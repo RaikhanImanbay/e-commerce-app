@@ -31,7 +31,8 @@ const Arrow = styled.div`
 const Wrapper = styled.div`
     height: 100%;
     display: flex;
-    transform: translateX(0vw);
+    transition: all 1.5s ease;
+    transform: translateX(${props=>props.slideIndex *  -100}vw);
 `
 const Slide = styled.div`
     width: 100vw;
@@ -57,7 +58,7 @@ const Title = styled.h1`
 `
 const Description = styled.p`
     margin: 50px 0;
-    font-size: 20px;
+    font-size: 23px;
     font-weight: 500;
     letter-spacing: 3px;
 
@@ -70,19 +71,25 @@ const Button = styled.button`
 `
 function Slider() {
     const [slideIndex, setSlideIndex] = useState(0);
-    const handleClick = (direction) => { }
+    const handleClick = (direction) => { 
+        if(direction ==="left"){
+            setSlideIndex(slideIndex > 0 ? slideIndex-1 : 1)
+        } else {
+            setSlideIndex(slideIndex < 1 ? slideIndex + 1 : 1)
+        }
+    }
     return (
         <Container>
             <Arrow direction="left" onClick={() => handleClick("left")}>
                 <ArrowLeftOutlined />
             </Arrow>
-            <Wrapper>
+            <Wrapper slideIndex={slideIndex}>
                 {sliderItems.map(item => (
-                    <Slide bg={item.bg}>
-                        <ImgContainer>
+                    <Slide bg={item.bg} key={item.id}>
+                        <ImgContainer >
                             <Image src={item.img} />
                         </ImgContainer>
-                        <InfoContainer>
+                        <InfoContainer >
                             <Title>{item.title}</Title>
                             <Description>{item.desc}</Description>
                             <Button>SHOP NOW</Button>

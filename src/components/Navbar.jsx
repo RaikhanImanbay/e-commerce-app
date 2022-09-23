@@ -5,6 +5,7 @@ import { Badge } from '@material-ui/core'
 
 const Container = styled.div`
     height: 60px;
+    padding-top: 10px;
 `
 const Wrapper = styled.div`
     padding: 10px 20px;
@@ -45,7 +46,7 @@ const Right = styled.div`
     justify-content: flex-end;
 `
 const MenuItem = styled.div`
-    font-size: 14px;
+    font-size: 16px;
     cursor: pointer;
     margin-left: 25px; 
 `
@@ -74,7 +75,7 @@ function Navbar() {
                         SIGN IN
                     </MenuItem>
                     <MenuItem>
-                        <Badge badgeContent={4} color="primary">
+                        <Badge overlap="rectangular" badgeContent={4} color="primary">
                             <ShoppingCartOutlined />
                         </Badge>
                     </MenuItem>
